@@ -1,16 +1,15 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../page_objects/LoginPage';
+import { InventoryPage } from '../page_objects/InventoryPage';
 
 test('adding an item from the product catalog updates the cart count', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com/');
+  const loginPage = new LoginPage(page);
+  const inventoryPage = new InventoryPage(page);
 
-  await page.locator('[data-test="username"]').fill('standard_user');
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
+  await loginPage.goto();
+  await loginPage.login('standard_user', 'secret_sauce');
+  await loginPage.waitForInventoryPage();
 
-  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
-
-  await page.locator('text=Sauce Labs Backpack').click();
-  await page.locator('button', { hasText: 'Add to cart' }).first().click();
-
-  await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+  await inventoryPage.addItemToCart('Sauce Labs Backpack');
+  await expect(await inventoryPage.getCartCount()).toBe('1');
 });
