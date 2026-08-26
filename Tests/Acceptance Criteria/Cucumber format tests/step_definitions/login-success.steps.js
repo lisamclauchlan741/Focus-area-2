@@ -24,11 +24,11 @@ Given('I am on the SauceDemo login page', async function () {
   await this.loginPage.goto();
 });
 
-When('I enter the username {string}', async function (username) {
+When('I enter the username {standard_user}', async function (username) {
   await this.loginPage.enterUsername(username);
 });
 
-When('I enter the password {string}', async function (password) {
+When('I enter the password {secret_sauce}', async function (password) {
   await this.loginPage.enterPassword(password);
 });
 
