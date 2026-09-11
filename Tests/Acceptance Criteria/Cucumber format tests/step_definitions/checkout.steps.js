@@ -9,21 +9,21 @@ When('I click the Checkout button', async function () {
   await this.checkoutPage.goToCheckout();
 });
 
-When('I enter the first name {string}', async function (firstName) {
+When('I enter the first name {firstname}', async function (firstName) {
   if (!this.checkoutPage) {
     this.checkoutPage = new CheckoutPage(this.page);
   }
   await this.checkoutPage.enterFirstName(firstName);
 });
 
-When('I enter the last name {string}', async function (lastName) {
+When('I enter the last name {lastname}', async function (lastName) {
   if (!this.checkoutPage) {
     this.checkoutPage = new CheckoutPage(this.page);
   }
   await this.checkoutPage.enterLastName(lastName);
 });
 
-When('I enter the postal code {string}', async function (postalCode) {
+When('I enter the postal code {postalcode}', async function (postalCode) {
   if (!this.checkoutPage) {
     this.checkoutPage = new CheckoutPage(this.page);
   }

@@ -4,6 +4,8 @@ const assert = require('assert');
 const { LoginPage } = require('../../page_objects/LoginPage');
 const { InventoryPage } = require('../../page_objects/InventoryPage');
 
+const standardUsername = 'standard_user';
+const secretPassword = 'secret_sauce';
 let browser;
 
 Before(async function () {
@@ -24,11 +26,11 @@ Given('I am on the SauceDemo login page', async function () {
   await this.loginPage.goto();
 });
 
-When('I enter the username {string}', async function (username) {
+When('I enter the username {standard_user}', async function (username = standardUsername) {
   await this.loginPage.enterUsername(username);
 });
 
-When('I enter the password {string}', async function (password) {
+When('I enter the password {secret_sauce}', async function (password = secretPassword) {
   await this.loginPage.enterPassword(password);
 });
 
