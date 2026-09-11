@@ -12,7 +12,7 @@ When(`I add "Sauce Labs Backpack" to the cart`, async function () {
   await this.inventoryPage.addItemToCart(itemName);
 });
 
-Then(`the shopping cart badge should show "1"`, async function () {
+Then(`the shopping cart badge should show "[1]"`, async function () {
   if (!this.inventoryPage) {
     this.inventoryPage = new InventoryPage(this.page);
   }

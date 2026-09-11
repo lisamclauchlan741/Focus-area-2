@@ -4,7 +4,7 @@ class InventoryPage {
     this.addToCartButton = itemName => `button[data-test="add-to-cart-${itemName.toLowerCase().replace(/\s+/g, '-')}"]`;
     this.cartBadge = '.shopping_cart_badge';
     this.cartLink = '.shopping_cart_link';
-    this.inventoryList = '.inventory_list';
+    this.inventoryList = '[data-test="inventory-list"]';
   }
 
   async addItemToCart(itemName) {
@@ -16,7 +16,8 @@ class InventoryPage {
   }
 
   async isInventoryListVisible() {
-    return this.page.isVisible(this.inventoryList);
+    await this.page.locator(this.inventoryList).waitFor({ state: 'visible' });
+    return true;
   }
 
   async openCart() {

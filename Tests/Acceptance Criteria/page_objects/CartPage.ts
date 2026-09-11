@@ -1,7 +1,7 @@
 export class CartPage {
   readonly page: any;
   readonly checkoutButton = '[data-test="checkout"]';
-  readonly cartItem = '.cart_item';
+  readonly cartItem = '[data-test="cart-list"] [data-test="inventory-item"]';
   readonly cartUrl = /\/cart\.html$/;
 
   constructor(page: any) {
@@ -13,7 +13,8 @@ export class CartPage {
   }
 
   async isItemVisible() {
-    return this.page.isVisible(this.cartItem);
+    await this.page.locator(this.cartItem).waitFor({ state: 'visible' });
+    return true;
   }
 
   async waitForCartPage() {

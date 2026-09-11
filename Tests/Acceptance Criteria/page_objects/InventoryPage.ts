@@ -4,7 +4,7 @@ export class InventoryPage {
     `button[data-test="add-to-cart-${itemName.toLowerCase().replace(/\s+/g, '-')}"]`;
   readonly cartBadge = '.shopping_cart_badge';
   readonly cartLink = '.shopping_cart_link';
-  readonly inventoryList = '.inventory_list';
+  readonly inventoryList = '[data-test="inventory-list"]';
 
   constructor(page: any) {
     this.page = page;
@@ -19,7 +19,8 @@ export class InventoryPage {
   }
 
   async isInventoryListVisible() {
-    return this.page.isVisible(this.inventoryList);
+    await this.page.locator(this.inventoryList).waitFor({ state: 'visible' });
+    return true;
   }
 
   async openCart() {
