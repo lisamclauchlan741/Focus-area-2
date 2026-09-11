@@ -1,18 +1,21 @@
 class CartPage {
   constructor(page) {
     this.page = page;
+    this.checkoutButton = '[data-test="checkout"]';
+    this.cartItem = '.cart_item';
+    this.cartUrl = /\/cart\.html$/;
   }
 
   async goToCheckout() {
-    await this.page.click('[data-test="checkout"]');
+    await this.page.click(this.checkoutButton);
   }
 
   async isItemVisible() {
-    return this.page.isVisible('.cart_item');
+    return this.page.isVisible(this.cartItem);
   }
 
   async waitForCartPage() {
-    await this.page.waitForURL(/\/cart\.html$/);
+    await this.page.waitForURL(this.cartUrl);
   }
 }
 
