@@ -1,22 +1,27 @@
 class LoginPage {
   constructor(page) {
     this.page = page;
+    this.loginUrl = 'https://www.saucedemo.com/';
+    this.usernameInput = '[data-test="username"]';
+    this.passwordInput = '[data-test="password"]';
+    this.loginButton = '[data-test="login-button"]';
+    this.inventoryUrl = /\/inventory\.html$/;
   }
 
   async goto() {
-    await this.page.goto('https://www.saucedemo.com/');
+    await this.page.goto(this.loginUrl);
   }
 
   async enterUsername(username) {
-    await this.page.fill('[data-test="username"]', username);
+    await this.page.fill(this.usernameInput, username);
   }
 
   async enterPassword(password) {
-    await this.page.fill('[data-test="password"]', password);
+    await this.page.fill(this.passwordInput, password);
   }
 
   async clickLoginButton() {
-    await this.page.click('[data-test="login-button"]');
+    await this.page.click(this.loginButton);
   }
 
   async login(username, password) {
@@ -26,7 +31,7 @@ class LoginPage {
   }
 
   async waitForInventoryPage() {
-    await this.page.waitForURL(/\/inventory\.html$/);
+    await this.page.waitForURL(this.inventoryUrl);
   }
 }
 

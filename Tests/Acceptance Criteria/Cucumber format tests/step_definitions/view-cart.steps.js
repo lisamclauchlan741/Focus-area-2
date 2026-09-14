@@ -3,6 +3,8 @@ const assert = require('assert');
 const { InventoryPage } = require('../../page_objects/InventoryPage');
 const { CartPage } = require('../../page_objects/CartPage');
 
+const selectedItemMessage = 'Expected selected item to be visible in the cart';
+
 When('I open the shopping cart', async function () {
   if (!this.inventoryPage) {
     this.inventoryPage = new InventoryPage(this.page);
@@ -22,5 +24,5 @@ Then('I should see the selected item in the cart', async function () {
     this.cartPage = new CartPage(this.page);
   }
   const hasItem = await this.cartPage.isItemVisible();
-  assert.ok(hasItem, 'Expected selected item to be visible in the cart');
+  assert.ok(hasItem, selectedItemMessage);
 });
